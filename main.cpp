@@ -1,34 +1,37 @@
-#include <stdio.h>
-#include<stdlib.h>
-void swap(int *x,int *y)
-{
-    int temp=*x;
-    *x=*y;
-    *y=temp;
-}
-void SelectionSort(int A[],int n)
-{
-    int i,j,k;
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
 
-    for(i=0;i<n-1;i++)
-    {
-        for(j=k=i;j<n;j++)
-        {
-            if(A[j]<A[k])
-                k=j;
+
+int main() {
+    int N = 0, Q = 0;
+    int lastans = 0;
+    int type, x, y;
+    int seq = 0;
+    int pos;
+
+    cin >> N >> Q;
+
+    vector < vector <int>> a(N);
+
+    for (int i = 0; i < Q; i ++) {
+        cin >> type >> x >> y;
+        seq = ((x ^ lastans) % N);
+        // cout << seq << endl;
+        if (type == 1) {
+            a[seq].push_back(y);
+            // cout << (seq) << " <-- " << y << endl;
         }
-        swap(&A[i],&A[k]);
+        else if (type == 2) {
+            pos = (y % a[seq].size());
+            //cout << "pos " << pos << endl;
+            lastans = a[seq][pos];
+            cout << lastans << endl;
+        }
+
     }
-}
-int main()
-{
-    int A[]={11,13,7,12,16,9,24,5,10,3},n=10,i;
-
-    SelectionSort(A,n);
-
-    for(i=0;i<10;i++)
-        printf("%d ",A[i]);
-    printf("\n");
-
     return 0;
 }
