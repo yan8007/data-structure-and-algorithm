@@ -6,31 +6,27 @@ void swap(int *x,int *y)
     *x=*y;
     *y=temp;
 }
-void Bubble(int A[],int n)
+void Insertion(int A[],int n)
 {
-    int i,j,flag=0;
+    int i,j,x;
 
-    for(i=0;i<n-1;i++)
+    for(i=1;i<n;i++)
     {
-        flag=0;
-        for(j=0;j<n-i-1;j++)
+        j=i-1;
+        x=A[i];
+        while(j>-1 && A[j]>x)
         {
-            if(A[j]>A[j+1])
-            {
-                swap(&A[j],&A[j+1]);
-                flag=1;
-            }
+            A[j+1]=A[j];
+            j--;
         }
-        if(flag==0)
-            break;
+        A[j+1]=x;
     }
-
 }
 int main()
 {
     int A[]={11,13,7,12,16,9,24,5,10,3},n=10,i;
 
-    Bubble(A,n);
+    Insertion(A,n);
 
     for(i=0;i<10;i++)
         printf("%d ",A[i]);
